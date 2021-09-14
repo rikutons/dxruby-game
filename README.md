@@ -1,0 +1,2 @@
+# dxruby-game
+for class
