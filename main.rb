@@ -4,20 +4,19 @@ require_relative 'player'
 require_relative 'enemy'
 
 player_img = Image.load("image/player.png")
-x = 100
-y = 100
-player = Player.new(x, y, player_img)
-
 enemy_img = Image.load("image/enemy.png")
-x = 300
-y = 300
-enemy = Enemy.new(x, y, enemy_img)
+
+player = Player.new(100, 100, player_img) # 簡潔にする
+enemies = [] # 書き換え、以下追加
+10.times do
+  enemies << Enemy.new(rand(0..(640 - 32 - 1)), rand((480 - 32 - 1)), enemy_img)
+end
 
 Window.loop do
   player.update
   player.draw
 
-  enemy.draw
+  Sprite.draw(enemies)
 
-  Sprite.check(player, enemy)
+  Sprite.check(player, enemies) # 書き換え
 end
